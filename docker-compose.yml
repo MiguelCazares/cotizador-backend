@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  cotizador-pos-db:
+    image: postgres:latest
+    container_name: cotizador-pos-db-container
+    ports:
+      - "53322:5432"
+    volumes:
+      - postgresdb:/var/lib/postgresql
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: cotizador-pos
+
+volumes:
+  postgresdb:
+    driver: local

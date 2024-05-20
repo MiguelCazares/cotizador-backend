@@ -1,0 +1,25 @@
+{
+  "extends": "airbnb-base",
+  "rules": {
+    "func-names": "off",
+    "no-console": "off",
+    "max-len": ["error", 130],
+    "newline-before-return": "error",
+    "no-case-declarations": 0,
+    "class-methods-use-this": 0,
+    "arrow-body-style": 0,
+    "import/no-unresolved": [
+      "error",
+      {
+        "ignore": ["^vitest/config$"]
+      }
+    ],
+    "no-multiple-empty-lines": ["error", { "max": 1 }],
+    "no-inline-comments": "error"
+  },
+  "env": {
+    "commonjs": true,
+    "node": true,
+    "jest": true
+  }
+}

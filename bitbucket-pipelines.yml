@@ -1,0 +1,46 @@
+image: node:18.14.0
+
+pipelines:
+  default:
+    - step:
+        name: Code linting
+        script:
+          - npm install
+          - npx eslint .
+        caches:
+          - node
+    - step:
+        name: Unit tests
+        script:
+          - npm install
+          - npm run migrate:latest
+          - npm run test
+        services:
+          - postgres
+        caches:
+          - node
+          - postgres
+    - step:
+        name: Coverage
+        script:
+          - npm install
+          - npm run migrate:latest
+          - npm run test-coverage
+        services:
+          - postgres
+        caches:
+          - node
+          - postgres
+
+definitions:
+  caches:
+    node: node
+    postgres: postgres
+
+  services:
+    postgres:
+      image: postgres
+      variables:
+        POSTGRES_DB: 'test'
+        POSTGRES_USER: 'postgres'
+        POSTGRES_PASSWORD: 'secret'
